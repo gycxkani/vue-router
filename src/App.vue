@@ -1,22 +1,25 @@
 <template>
   <nav>
-    <!-- <router-link to="/">Home</router-link> | -->
+    <router-link to="/">Home</router-link> |
     <router-link to="/demo1">Demo1</router-link> |
     <router-link to="/demo2">Demo2</router-link> |
-    <!-- <router-link to="/about">About</router-link> -->
+    <!-- <router-link to="/user/:username/:id">User</router-link> | -->
+    <router-link to="/user/小王/9999">小王</router-link> |
+    <router-link to="/user/小李/6666">小李</router-link> |
+    <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // HelloWorld
   }
 }
 </script>
