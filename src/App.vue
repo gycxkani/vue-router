@@ -6,6 +6,9 @@
     <!-- <router-link to="/user/:username/:id">User</router-link> | -->
     <router-link to="/user/小王/9999">小王</router-link> |
     <router-link to="/user/小李/6666">小李</router-link> |
+    <router-link to="/user-2/:username">UserInfo</router-link> |
+    <router-link to="/user-2/:id">UserSetting</router-link> |
+    <router-link to="/category/:cat*">Category</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
   <router-view/>

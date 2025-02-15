@@ -5,7 +5,7 @@ const routes = [
   {
     path: "/",
     name: "Loading",
-    redirect: "/home"
+    redirect: "/home",
   },
   {
     path: "/home",
@@ -25,10 +25,28 @@ const routes = [
       import(/* webpackChunkName: "demo" */ "../base-use/Demo_2.vue"),
   },
   {
-    path: "/user/:username/:id",
+    path: "/user/:username/:id", //多个参数
     name: "User",
     component: () =>
-      import(/* webpackChunkName: "demo" */ "../components/UserInfo.vue"),
+      import(/* webpackChunkName: "user" */ "../components/UserInfo.vue"),
+  },
+  {
+    path: "/user-2/:username?", //?表示可选参数
+    name: "User-2",
+    component: () =>
+      import(/* webpackChunkName: "user" */ "../components/User-2.vue"),
+  },
+  {
+    path: "/user-2/:id(\\d+)", //正则表达式,只能匹配数字
+    name: "UserSetting",
+    component: () =>
+      import(/* webpackChunkName: "user" */ "../components/UserSetting.vue"),
+  },
+  {
+    path: "/category/:cat*", //匹配多级路径，参数会转换为数组
+    name: "Category",
+    component: () =>
+      import(/* webpackChunkName: "cat" */ "../components/Category-1.vue"),
   },
   {
     path: "/about",
