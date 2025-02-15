@@ -35,6 +35,15 @@ const routes = [
     name: "User-2",
     component: () =>
       import(/* webpackChunkName: "user" */ "../components/User-2.vue"),
+    // 路由嵌套
+    children: [
+      {
+        path: "friends/:count",
+        name: "Friends",
+        component: () =>
+          import(/* webpackChunkName: "user" */ "../components/Friends-1.vue"),
+      },
+    ],
   },
   {
     path: "/user-2/:id(\\d+)", //正则表达式,只能匹配数字
