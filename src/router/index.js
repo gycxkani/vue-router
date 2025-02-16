@@ -43,17 +43,20 @@ const routes = [
     name: "User",
     component: () =>
       import(/* webpackChunkName: "user" */ "../components/UserInfo.vue"),
+    props: true, //将路由参数映射到组件的props
   },
   {
-    path: "/user-3/:username/:id", //一个路径多个参数，对应多个组件
+    path: "/user-3/:username/:id", //一个路径对应多个组件
     name: "User-3",
-    // component: () =>
-    //   import(/* webpackChunkName: "user" */ "../components/UserInfo.vue"),
     components: {
       topBar: () =>
         import(/* webpackChunkName: "user" */ "../components/UserInfo.vue"),
       main: () =>
         import(/* webpackChunkName: "user" */ "../components/UserSetting.vue"),
+    },
+    props: {
+      topBar: true,
+      main: true,
     },
   },
   {
@@ -68,8 +71,10 @@ const routes = [
         name: "Friends",
         component: () =>
           import(/* webpackChunkName: "user" */ "../components/Friends-1.vue"),
+        props: true,
       },
     ],
+    props: true,
   },
   {
     path: "/user-2/:id(\\d+)", //正则表达式,只能匹配数字
@@ -77,6 +82,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "user" */ "../components/UserSetting.vue"),
     alias: "/setting/:id(\\d+)", //别名
+    props: true,
   },
   {
     path: "/category/:cat*", //匹配多级路径，参数会转换为数组

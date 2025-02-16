@@ -1,8 +1,12 @@
 <template>
   <h1>好友列表</h1>
-  <h1>好友人数：{{ $route.params.count }}</h1>
+  <h1 v-bind="$attrs.count">好友人数：{{ count }}</h1>
 </template>
 
-<script></script>
+<script>
+export default {
+  props: ["count"],
+};
+</script>
 
 <style></style>
