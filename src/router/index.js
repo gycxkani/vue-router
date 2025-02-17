@@ -17,18 +17,18 @@ const routes = [
     name: "Demo1",
     component: () =>
       import(/* webpackChunkName: "demo" */ "../base-use/Demo_1.vue"),
-    // beforeEnter路由独享守卫，只在进入路由时触发，路由参数改变不会触发
+    // 路由独享守卫，只在进入路由时触发，路由参数改变不会触发
     beforeEnter: (router) => {
       console.log(router);
       return true; // 允许跳转
-    }
+    },
   },
-  {
-    path: "/demo2",
-    name: "Demo2",
-    component: () =>
-      import(/* webpackChunkName: "demo" */ "../base-use/Demo_2.vue"),
-  },
+  // {
+  //   path: "/demo2",
+  //   name: "Demo2",
+  //   component: () =>
+  //     import(/* webpackChunkName: "demo" */ "../base-use/Demo_2.vue"),
+  // },
   {
     path: "/demo3",
     name: "Demo3",
@@ -104,6 +104,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
+
+  {
+    path: "/:pathMatch(.*)*", // 匹配所有未知路径
+    name: "NotFound",
+    component: () =>
+      import(/* webpackChunkName: "404" */ "../views/NotFound.vue"),
+  },
 ];
 
 const router = createRouter({
@@ -119,7 +126,6 @@ router.beforeEach((to, from) => {
   //   // 防止无限循环
   //   return { name: "UserSetting", params: { id: "100" } }; // 路由拦截,跳转到UserSetting
   // }
-  
 });
 
 // 导航后置守卫，跳转结束后的回调，可以用来做路由跳转后的处理
