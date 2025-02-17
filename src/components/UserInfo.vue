@@ -7,12 +7,14 @@
 <script>
 export default {
   props:['username','id'],
+  // 只在组件第一次加载时触发，路由参数有更新时不触发，因为组件不会重新加载
   mounted() {
     alert(
       `组件加载，请求数据。路由参数为name: ${this.$route.params.username} id: ${this.$route.params.id}`
     );
   },
-  
+
+  // 特定路由导航守卫，当路由参数有更新时触发
   beforeRouteUpdate(to, from) {
     console.log(to, from);
     alert(

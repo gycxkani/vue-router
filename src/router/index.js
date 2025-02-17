@@ -17,6 +17,11 @@ const routes = [
     name: "Demo1",
     component: () =>
       import(/* webpackChunkName: "demo" */ "../base-use/Demo_1.vue"),
+    // beforeEnter路由独享守卫，只在进入路由时触发，路由参数改变不会触发
+    beforeEnter: (router) => {
+      console.log(router);
+      return true; // 允许跳转
+    }
   },
   {
     path: "/demo2",
@@ -82,7 +87,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "user" */ "../components/UserSetting.vue"),
     alias: "/setting/:id(\\d+)", //别名
-    props: true,
+    props: true, //将路由参数映射到组件的props
   },
   {
     path: "/category/:cat*", //匹配多级路径，参数会转换为数组
@@ -104,6 +109,25 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes: routes,
+});
+
+// 全局前置导航守卫，跳转前的回调，可以用来做路由拦截
+router.beforeEach((to, from) => {
+  console.log(to); // 将要跳转到的路由对象
+  console.log(from); // 当前导航正要离开的路由对象
+  // if (to.name !== "UserSetting") {
+  //   // 防止无限循环
+  //   return { name: "UserSetting", params: { id: "100" } }; // 路由拦截,跳转到UserSetting
+  // }
+  
+});
+
+// 导航后置守卫，跳转结束后的回调，可以用来做路由跳转后的处理
+router.afterEach((to, from, failure) => {
+  console.log("跳转结束");
+  console.log(to); // 跳转到的路由对象
+  console.log(from); // 离开的路由对象
+  console.log(failure); // 跳转失败的错误信息
 });
 
 export default router;
